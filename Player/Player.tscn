@@ -14,13 +14,17 @@ extents = Vector2( 32.0133, 63.9587 )
 custom_solver_bias = 0.0
 extents = Vector2( 64.1883, 32.2029 )
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=[
+"humans",
+]]
 
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
+_sections_unfolded = [ "Visibility" ]
+sheep = null
 
 [node name="Human" type="CollisionShape2D" parent="." index="0"]
 
@@ -35,6 +39,7 @@ texture = ExtResource( 2 )
 visible = false
 position = Vector2( 30.9034, 32.2552 )
 shape = SubResource( 2 )
+disabled = true
 
 [node name="Sprite" type="Sprite" parent="Sheep" index="0"]
 

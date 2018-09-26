@@ -5,7 +5,7 @@ extends KinematicBody2D
 # var a = 2
 # var b = "textvar"
 var speed = 500
-var sheep
+export(bool) var sheep
 
 func _ready():
 	sheep = false
@@ -30,6 +30,15 @@ func move():
 
 func set_form():
 	if Input.is_action_just_pressed("toggle_form"):
-		sheep = !sheep
+		$Human.disabled = !$Human.disabled
 		$Human.visible = !$Human.visible
+		$Sheep.disabled = !$Sheep.disabled
 		$Sheep.visible = !$Sheep.visible
+		sheep = !sheep
+		
+		if sheep:
+			remove_from_group("humans")
+			add_to_group("sheep")
+		else:
+			remove_from_group("sheep")
+			add_to_group("humans")
