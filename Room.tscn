@@ -48,12 +48,13 @@ position = Vector2( 642.58, 295.117 )
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
 position = Vector2( 98.4756, 220 )
 curve = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="FarmerFollow" type="PathFollow2D" parent="FarmerPath" index="0"]
 
-position = Vector2( 8.97247, -158.378 )
+position = Vector2( 139.079, 311.622 )
 rotation = 1.5708
-offset = 0.0
+offset = 600.0
 h_offset = 0.0
 v_offset = 0.0
 rotate = false
@@ -64,8 +65,8 @@ script = ExtResource( 4 )
 
 [node name="Farmer" parent="FarmerPath/FarmerFollow" index="0" instance=ExtResource( 5 )]
 
-position = Vector2( 6.65716, -2.11549 )
 rotation = 1.5708
+_sections_unfolded = [ "Transform" ]
 
 [node name="TileMap" type="TileMap" parent="." index="4" groups=[
 "obstacles",
