@@ -14,7 +14,7 @@ extents = Vector2( 64.0904, 31.8837 )
 custom_solver_bias = 0.0
 radius = 213.49
 
-[node name="Wolf" type="KinematicBody2D"]
+[node name="Wolf" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -45,5 +45,7 @@ script = ExtResource( 3 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AgroArea" index="0"]
 
 shape = SubResource( 2 )
+
+[connection signal="sheep_detected" from="AgroArea" to="." method="_on_AgroArea_sheep_detected"]
 
 
