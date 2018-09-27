@@ -46,6 +46,14 @@ script = ExtResource( 3 )
 
 shape = SubResource( 2 )
 
+[node name="Ray" type="RayCast2D" parent="." index="3"]
+
+enabled = true
+exclude_parent = true
+cast_to = Vector2( 0, 50 )
+collision_mask = 1
+_sections_unfolded = [ "Transform", "Z Index" ]
+
 [connection signal="sheep_detected" from="AgroArea" to="." method="_on_AgroArea_sheep_detected"]
 
 
