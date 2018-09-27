@@ -7,10 +7,7 @@ path="res://.import/white_rect.png-7cd56b51947d40160bdcb806d8cca374.stex"
 [deps]
 
 source_file="res://Player/white_rect.png"
-source_md5="e9a8cd63ebc7c43c70e209f5f34c9f0b"
-
 dest_files=[ "res://.import/white_rect.png-7cd56b51947d40160bdcb806d8cca374.stex" ]
-dest_md5="94c7357b5d2da9fbd0d40b1c5e337533"
 
 [params]
 
