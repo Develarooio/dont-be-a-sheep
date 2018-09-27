@@ -46,6 +46,4 @@ script = ExtResource( 3 )
 
 shape = SubResource( 2 )
 
-[connection signal="body_entered" from="AgroArea" to="." method="_on_AgroArea_body_entered"]
-
 

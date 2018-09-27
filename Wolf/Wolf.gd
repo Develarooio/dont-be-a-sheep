@@ -1,17 +1,15 @@
 extends KinematicBody2D
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
+var direction = Vector2(0,0)
+var speed = 400
+onready var agro = get_node("AgroArea")
 
 func _ready():
-	# Called every time the node is added to the scene.
-	# Initialization here
-	pass
+	agro.connect("sheep_detected" , self , "update_sheep_coord")
 
 func _process(delta):
-	pass
+	move_and_slide(direction * speed)
+	direction = Vector2(0,0)
 
-
-func _on_AgroArea_body_entered(body):
-	#print(body.is_in_group("humans"))
+func update_sheep_coord(sheep_position):
+	direction = Vector2(sheep_position - position).normalized()
