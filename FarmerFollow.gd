@@ -11,4 +11,3 @@ func _ready():
 
 func _process(delta):
 	offset = offset + SPEED
-	print(offset)
