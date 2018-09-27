@@ -7,7 +7,10 @@ path="res://.import/yellow_rect.png-5cf9dde26e44dc56b61f36e91dae08e9.stex"
 [deps]
 
 source_file="res://Farmer/yellow_rect.png"
+source_md5="592fcd0356db66b5fa6ceaabfa22713a"
+
 dest_files=[ "res://.import/yellow_rect.png-5cf9dde26e44dc56b61f36e91dae08e9.stex" ]
+dest_md5="85f8929118af85dedd97c1f5a2c68669"
 
 [params]
 

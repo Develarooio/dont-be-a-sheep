@@ -7,7 +7,10 @@ path="res://.import/brow_rect.png-4bf2fddf108b3600bae165bc214653e9.stex"
 [deps]
 
 source_file="res://Wolf/brow_rect.png"
+source_md5="6cfba210d5331892d9d4e53939fcdff7"
+
 dest_files=[ "res://.import/brow_rect.png-4bf2fddf108b3600bae165bc214653e9.stex" ]
+dest_md5="96cb9e16d39cf7e7ae161c8342024e17"
 
 [params]
 

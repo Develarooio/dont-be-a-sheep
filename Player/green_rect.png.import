@@ -7,7 +7,10 @@ path="res://.import/green_rect.png-c97f06b2ade861f2f60810281659f486.stex"
 [deps]
 
 source_file="res://Player/green_rect.png"
+source_md5="5459babdbcc55f9107bdaaba3f240972"
+
 dest_files=[ "res://.import/green_rect.png-c97f06b2ade861f2f60810281659f486.stex" ]
+dest_md5="33ea7be0e3709cab2e93a1c6b3b8af0d"
 
 [params]
 
