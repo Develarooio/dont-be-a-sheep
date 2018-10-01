@@ -1,14 +1,38 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Farmer/Farmer.gd" type="Script" id=1]
 [ext_resource path="res://Farmer/yellow_rect.png" type="Texture" id=2]
+[ext_resource path="res://Farmer/ConeOfSight.gd" type="Script" id=3]
+[ext_resource path="res://Farmer/Timer.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 32.1688, 64.1353 )
 
-[node name="Farmer" type="KinematicBody2D"]
+[sub_resource type="ConvexPolygonShape2D" id=2]
+
+custom_solver_bias = 0.0
+points = PoolVector2Array( 50, 0, -50, 0, -300, 500, 300, 500 )
+
+[sub_resource type="GDScript" id=3]
+
+script/source = "extends CollisionShape2D
+
+# class member variables go here, for example:
+# var a = 2
+# var b = \"textvar\"
+
+func _ready():
+	# Called when the node is added to the scene for the first time.
+	# Initialization here
+	pass
+
+
+	
+"
+
+[node name="Farmer" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -22,9 +46,42 @@ _sections_unfolded = [ "Transform" ]
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+[node name="FarmerBodyCollisionShape" type="CollisionShape2D" parent="." index="1"]
 
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="ConeOfSight" type="Area2D" parent="." index="2"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 3 )
+
+[node name="ConeCollision" type="CollisionShape2D" parent="ConeOfSight" index="0"]
+
+position = Vector2( -5.1412, -3.2203 )
+shape = SubResource( 2 )
+script = SubResource( 3 )
+
+[node name="ShootTimer" type="Timer" parent="." index="3"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+script = ExtResource( 4 )
+
+[connection signal="body_entered" from="ConeOfSight" to="." method="_on_ConeOfSight_body_entered"]
+
+[connection signal="farmer_lost_player" from="ConeOfSight" to="." method="_on_ConeOfSight_farmer_lost_player"]
+
+[connection signal="farmer_saw_player" from="ConeOfSight" to="." method="_on_ConeOfSight_farmer_saw_player"]
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]
 
 

@@ -11,7 +11,7 @@
 
 bake_interval = 5.0
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 8.97247, -158.378, 0, 0, 0, 0, 8.97247, 311.622, 0, 0, 0, 0, 878.972, 311.622, 0, 0, 0, 0, 878.972, -158.378, 0, 0, 0, 0, 8.97247, -158.378 )
+"points": PoolVector2Array( 0, 0, 0, 0, 14.3879, -152.157, 0, 0, 0, 0, 54.9894, 470.787, 0, 0, 0, 0, 726.655, 433.666, 0, 0, 0, 0, 724.335, -135.916, 0, 0, 0, 0, 8.97247, -158.378 )
 }
 
 [node name="Room" type="Node2D"]
@@ -51,7 +51,7 @@ curve = SubResource( 1 )
 
 [node name="FarmerFollow" type="PathFollow2D" parent="FarmerPath" index="0"]
 
-position = Vector2( 8.97247, -158.378 )
+position = Vector2( 14.3879, -152.157 )
 rotation = 1.5708
 offset = 0.0
 h_offset = 0.0
@@ -71,6 +71,7 @@ rotation = 1.5708
 "obstacles",
 ]]
 
+position = Vector2( -117.164, 13.9205 )
 mode = 0
 tile_set = ExtResource( 6 )
 cell_size = Vector2( 50, 50 )
@@ -87,7 +88,7 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( 393240, 0, 0, 458776, 0, 0, 524312, 0, 0, 589848, 0, 0, 983059, 0, 0, 1048595, 0, 0, 1114131, 0, 0, 1179667, 0, 0, 1245199, 0, 0, 1245200, 0, 0, 1245201, 0, 0, 1245202, 0, 0, 1245203, 0, 0 )
+tile_data = PoolIntArray( 262165, 0, 0, 327701, 0, 0, 393237, 0, 0, 458773, 0, 0, 524309, 0, 0, 589845, 0, 0, 655381, 0, 0, 720917, 0, 0, 786453, 0, 0, 851989, 0, 0, 917525, 0, 0 )
 _sections_unfolded = [ "Cell" ]
 
 
