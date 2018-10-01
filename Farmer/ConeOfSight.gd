@@ -11,15 +11,4 @@ func _ready():
 	pass
 
 func _physics_process(delta):
-	var saw_player = false
-	var player_body
-	
-	for body in get_overlapping_bodies():
-		if (body.get_name() == "Player" and !body.sheep):
-			saw_player = true
-			player_body = body
-			
-	if (saw_player):
-		emit_signal("farmer_saw_player", player_body)
-	else:
-		emit_signal("farmer_lost_player")
+	pass

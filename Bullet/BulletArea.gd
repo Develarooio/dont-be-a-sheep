@@ -10,7 +10,7 @@ func _ready():
 	
 func set_direction(dir):
 	direction = dir
-	print(direction)
 	
 func _physics_process(delta):
+	print(collision_layer)
 	position = position + (direction * speed)

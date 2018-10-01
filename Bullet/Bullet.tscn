@@ -7,6 +7,7 @@
 
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
+_sections_unfolded = [ "Resource" ]
 
 [node name="Bullet" type="Area2D"]
 
@@ -16,10 +17,12 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+collision_layer = 2
+collision_mask = 2
 audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
@@ -32,6 +35,5 @@ _sections_unfolded = [ "Transform" ]
 position = Vector2( 0.209425, -0.737024 )
 scale = Vector2( 3.0033, 2.98863 )
 shape = SubResource( 1 )
-_sections_unfolded = [ "Transform" ]
 
 
