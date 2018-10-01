@@ -17,9 +17,9 @@ radius = 463.312
 [sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
-extents = Vector2( 64.7743, 34.3028 )
+extents = Vector2( 64.1499, 32.1721 )
 
-[node name="Wolf" type="KinematicBody2D"]
+[node name="Wolf" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 1
