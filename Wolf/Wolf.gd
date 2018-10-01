@@ -27,9 +27,8 @@ func path_blocked(sheep_center, rect_coords):
 		rays[i].cast_to = sheep_center + rect_coords[i]
 		if rays[i].get_collider() != null and rays[i].get_collider().is_in_group("obstacles"):
 			blocked.append(true)
-		else:
+		elif rays[i].get_collider() != null and rays[i].get_collider().is_in_group("sheep"):
 			blocked.append(false)
-			
 	if blocked.has(false):
 		return false
 	else:
