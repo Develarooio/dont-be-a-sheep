@@ -54,3 +54,7 @@ func get_position():
 		return $Sheep.global_position
 	else:
 		return $Human.global_position
+
+func kill():
+	#Emit game over signal?  Connect to root node?
+	queue_free()

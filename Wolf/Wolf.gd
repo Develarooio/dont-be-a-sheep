@@ -42,3 +42,7 @@ func get_corners_from_extents(half_extents):
 	result.append(Vector2(half_extents[0]*-1, half_extents[1]*-1))
 	result.append(Vector2(half_extents[0], half_extents[1]))
 	return result
+
+func _on_KillZone_body_entered(body):
+	if body.is_in_group("sheep"):
+		body.kill()
