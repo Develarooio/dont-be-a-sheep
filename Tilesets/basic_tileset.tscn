@@ -7,9 +7,13 @@
 custom_solver_bias = 0.0
 extents = Vector2( 25.0133, 25.0248 )
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" groups=[
+"obstacles",
+]]
 
-[node name="Wall" type="Sprite" parent="." index="0"]
+[node name="Wall" type="Sprite" parent="." index="0" groups=[
+"obstacles",
+]]
 
 texture = ExtResource( 1 )
 _sections_unfolded = [ "Offset", "Transform" ]
