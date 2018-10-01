@@ -15,6 +15,12 @@ func _physics_process(delta):
 	move()
 	set_form()
 	
+func get_shape():
+	if sheep:
+		return shape_owner_get_shape(0, 0)
+	else:
+		return shape_owner_get_shape(1, 0)
+
 func move():
 	var direction = Vector2()
 	if Input.is_action_pressed("move_down"):
