@@ -17,9 +17,9 @@ func _physics_process(delta):
 	
 func get_shape():
 	if sheep:
-		return shape_owner_get_shape(0, 0)
-	else:
 		return shape_owner_get_shape(1, 0)
+	else:
+		return shape_owner_get_shape(0, 0)
 
 func move():
 	var direction = Vector2()
@@ -48,3 +48,13 @@ func set_form():
 		else:
 			remove_from_group("sheep")
 			add_to_group("humans")
+
+func get_position():
+	if sheep:
+		return $Sheep.global_position
+	else:
+		return $Human.global_position
+
+func kill():
+	#Emit game over signal?  Connect to root node?
+	queue_free()

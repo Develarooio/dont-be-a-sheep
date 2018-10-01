@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Tilesets/nice_walls.tres" type="TileSet" id=1]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Wolf/Wolf.tscn" type="PackedScene" id=3]
+
+[node name="ClaytonDebug" type="Node2D" index="0"]
+
+[node name="TileMap" type="TileMap" parent="." index="0" groups=[
+"obstacles",
+]]
+
+mode = 0
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 50, 50 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( 65542, 0, 0, 131078, 0, 0, 196614, 0, 0, 196618, 0, 0, 196619, 0, 0, 196620, 0, 0, 196621, 0, 0, 196622, 0, 0, 262150, 0, 0, 327686, 0, 0, 393222, 0, 0, 589852, 0, 0, 655388, 0, 0, 720924, 0, 0, 786438, 0, 0, 786460, 0, 0, 786461, 0, 0, 786462, 0, 0, 786463, 0, 0, 851974, 0, 0, 917510, 0, 0, 983046, 0, 0, 1048580, 0, 0, 1048581, 0, 0, 1048582, 0, 0, 1048583, 0, 0, 1048584, 0, 0, 1114139, 0, 0, 1179675, 0, 0, 1245211, 0, 0, 1310744, 0, 0, 1310745, 0, 0, 1310746, 0, 0, 1310747, 0, 0 )
+_sections_unfolded = [ "Cell" ]
+
+[node name="Player" parent="." index="1" instance=ExtResource( 2 )]
+
+position = Vector2( 217.124, 308.985 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="Wolf" parent="." index="2" instance=ExtResource( 3 )]
+
+position = Vector2( 821.732, 611.289 )
+
+
