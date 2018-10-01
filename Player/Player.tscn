@@ -14,7 +14,7 @@ extents = Vector2( 32.0133, 63.9587 )
 custom_solver_bias = 0.0
 extents = Vector2( 64.1883, 32.2029 )
 
-[node name="Player" type="KinematicBody2D" index="0" groups=[
+[node name="Player" type="KinematicBody2D" groups=[
 "humans",
 ]]
 

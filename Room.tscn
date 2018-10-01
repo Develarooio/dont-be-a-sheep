@@ -11,10 +11,10 @@
 
 bake_interval = 5.0
 _data = {
-points": PoolVector2Array( 0, 0, 0, 0, 8.97247, -158.378, 0, 0, 0, 0, 8.97247, 311.622, 0, 0, 0, 0, 82.0188, -80.2054, 0, 0, 0, 0, 878.972, -158.378, 0, 0, 0, 0, 8.97247, -158.378 )
+"points": PoolVector2Array( 0, 0, 0, 0, 8.97247, -158.378, 0, 0, 0, 0, 8.97247, 311.622, 0, 0, 0, 0, 82.0188, -80.2054, 0, 0, 0, 0, 878.972, -158.378, 0, 0, 0, 0, 8.97247, -158.378 )
 }
 
-[node name="Room" type="Node2D"]
+[node name="Room" type="Node2D" index="0"]
 
 position = Vector2( 1.52435, 0 )
 script = ExtResource( 1 )
@@ -70,6 +70,7 @@ rotation = 1.5708
 [node name="TileMap" type="TileMap" parent="." index="4" groups=[
 "obstacles",
 ]]
+
 position = Vector2( -168.201, 0 )
 mode = 0
 tile_set = ExtResource( 6 )
