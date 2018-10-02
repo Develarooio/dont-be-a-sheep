@@ -2,12 +2,14 @@ extends KinematicBody2D
 
 var speed = 500
 var default_speed = 500
+var is_transforming = false
 export(bool) var sheep
 var dash_speed = 1100
 var can_dash = true
 onready var dash_label = get_node("DashLabel")
 onready var dash_cooldown = get_node("DashCooldown")
 onready var dash_length = get_node("DashLength")
+
 func _ready():
 	sheep = false
 	pass
@@ -45,10 +47,11 @@ func move():
 	if Input.is_action_pressed("move_left"):
 		direction.x = -1
 	
-	move_and_slide(direction.normalized() * speed)
+	if !is_transforming:
+		move_and_slide(direction.normalized() * speed)
 
 func set_form():
-	if Input.is_action_just_pressed("toggle_form"):
+	if Input.is_action_just_pressed("toggle_form") and !is_transforming:
 		$Human.disabled = !$Human.disabled
 		$Human.visible = !$Human.visible
 		$Sheep.disabled = !$Sheep.disabled
@@ -61,6 +64,10 @@ func set_form():
 		else:
 			remove_from_group("sheep")
 			add_to_group("humans")
+		
+		is_transforming = true
+		$TransformTimer.start()
+		$AnimationPlayer.play("player-transformation")
 
 func get_position():
 	if sheep:
@@ -75,6 +82,8 @@ func kill():
 func _on_DashCooldown_timeout():
 	can_dash = true
 
-
 func _on_DashLength_timeout():
 	speed = default_speed
+
+func _on_TransformTimer_timeout():
+	is_transforming = false

@@ -73,7 +73,6 @@ func has_los_with_player_body(body):
 		return false
 	
 	return false
-	
 
 func shoot_at(player_pos):
 	var bullet = bullet_scene.instance()
