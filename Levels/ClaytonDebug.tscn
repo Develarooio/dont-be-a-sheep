@@ -4,7 +4,7 @@
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Wolf/Wolf.tscn" type="PackedScene" id=3]
 
-[node name="ClaytonDebug" type="Node2D" index="0"]
+[node name="ClaytonDebug" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="." index="0" groups=[
 "obstacles",
@@ -32,7 +32,7 @@ _sections_unfolded = [ "Cell" ]
 [node name="Player" parent="." index="1" instance=ExtResource( 2 )]
 
 position = Vector2( 217.124, 308.985 )
-_sections_unfolded = [ "Transform", "Visibility" ]
+_sections_unfolded = [ "Collision", "Transform", "Visibility" ]
 
 [node name="Wolf" parent="." index="2" instance=ExtResource( 3 )]
 

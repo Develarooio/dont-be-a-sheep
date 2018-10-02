@@ -12,5 +12,4 @@ func set_direction(dir):
 	direction = dir
 	
 func _physics_process(delta):
-	print(collision_layer)
 	position = position + (direction * speed)

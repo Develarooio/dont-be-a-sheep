@@ -1,19 +1,32 @@
 extends KinematicBody2D
 
-
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
 var speed = 500
+var default_speed = 500
 export(bool) var sheep
-
+var dash_speed = 1100
+var can_dash = true
+onready var dash_label = get_node("DashLabel")
+onready var dash_cooldown = get_node("DashCooldown")
+onready var dash_length = get_node("DashLength")
 func _ready():
 	sheep = false
 	pass
 
 func _physics_process(delta):
+	if can_dash:
+		dash_label.text = "CAN DASH: TRUE"
+	else:
+		dash_label.text = "CAN DASH: FALSE"
+	dash()
 	move()
 	set_form()
+
+func dash():
+	if Input.is_action_pressed("dash") and can_dash:
+		can_dash = false
+		speed = dash_speed
+		dash_length.start()
+		dash_cooldown.start()
 	
 func get_shape():
 	if sheep:
@@ -58,3 +71,10 @@ func get_position():
 func kill():
 	#Emit game over signal?  Connect to root node?
 	queue_free()
+
+func _on_DashCooldown_timeout():
+	can_dash = true
+
+
+func _on_DashLength_timeout():
+	speed = default_speed
