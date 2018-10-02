@@ -27,7 +27,7 @@ func _physics_process(delta):
 		$FaceTimer.start()
 		
 	
-	if !can_see_player:
+	if !can_see_player and (facing_direction.length() != 0):
 		face(facing_direction)
 	
 	can_see_player = false
