@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/green_rect.png" type="Texture" id=2]
@@ -14,20 +14,41 @@ extents = Vector2( 32.0133, 63.9587 )
 custom_solver_bias = 0.0
 extents = Vector2( 64.1883, 32.2029 )
 
+[sub_resource type="Animation" id=3]
+
+resource_name = "player-transformation"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 180.0, 0.0 ]
+}
+
 [node name="Player" type="KinematicBody2D" index="0" groups=[
 "humans",
 ]]
 
+position = Vector2( -1, 0 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision", "Visibility" ]
+_sections_unfolded = [ "Collision", "Transform" ]
 sheep = null
 
 [node name="Human" type="CollisionShape2D" parent="." index="0"]
 
+editor/display_folded = true
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Human" index="0"]
@@ -36,6 +57,7 @@ texture = ExtResource( 2 )
 
 [node name="Sheep" type="CollisionShape2D" parent="." index="1"]
 
+editor/display_folded = true
 visible = false
 position = Vector2( 30.9034, 32.2552 )
 shape = SubResource( 2 )
@@ -50,21 +72,31 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="DashCooldown" type="Timer" parent="." index="2"]
+[node name="TransformTimer" type="Timer" parent="." index="2"]
 
 process_mode = 1
 wait_time = 1.0
 one_shot = false
 autostart = false
 
-[node name="DashLength" type="Timer" parent="." index="3"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/player-transformation = SubResource( 3 )
+blend_times = [  ]
+
+[node name="DashLength" type="Timer" parent="." index="4"]
 
 process_mode = 1
 wait_time = 0.1
 one_shot = false
 autostart = false
 
-[node name="DashLabel" type="Label" parent="." index="4"]
+[node name="DashLabel" type="Label" parent="." index="5"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -85,8 +117,17 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[connection signal="timeout" from="DashCooldown" to="." method="_on_DashCooldown_timeout"]
+[node name="DashCooldown" type="Timer" parent="." index="6"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[connection signal="timeout" from="TransformTimer" to="." method="_on_TransformTimer_timeout"]
 
 [connection signal="timeout" from="DashLength" to="." method="_on_DashLength_timeout"]
+
+[connection signal="timeout" from="DashCooldown" to="." method="_on_DashCooldown_timeout"]
 
 
