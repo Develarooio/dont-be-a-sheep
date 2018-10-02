@@ -14,7 +14,7 @@ extents = Vector2( 32.0133, 63.9587 )
 custom_solver_bias = 0.0
 extents = Vector2( 64.1883, 32.2029 )
 
-[node name="Player" type="KinematicBody2D" groups=[
+[node name="Player" type="KinematicBody2D" index="0" groups=[
 "humans",
 ]]
 
@@ -49,5 +49,44 @@ texture = ExtResource( 3 )
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="DashCooldown" type="Timer" parent="." index="2"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="DashLength" type="Timer" parent="." index="3"]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = false
+autostart = false
+
+[node name="DashLabel" type="Label" parent="." index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -31.0966
+margin_top = -97.7448
+margin_right = 39.9034
+margin_bottom = -83.7448
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "CAN DASH:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[connection signal="timeout" from="DashCooldown" to="." method="_on_DashCooldown_timeout"]
+
+[connection signal="timeout" from="DashLength" to="." method="_on_DashLength_timeout"]
 
 
