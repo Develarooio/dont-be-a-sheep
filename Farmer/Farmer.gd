@@ -1,9 +1,11 @@
 extends KinematicBody2D
 
 var can_shoot = true
+var can_update_face_direction = true
 var bullet_scene = preload("res://Bullet/Bullet.tscn")
 var can_see_player = false
 var last_frame_pos
+var facing_direction
 
 var sight_color = Color(1.0,0,0)
 
@@ -17,11 +19,16 @@ func _ready():
 
 func _physics_process(delta):
 	update()
-	var dir =  last_frame_pos - global_position
-	last_frame_pos = global_position
+	
+	if can_update_face_direction:
+		facing_direction =  last_frame_pos - global_position
+		last_frame_pos = global_position
+		can_update_face_direction = false
+		$FaceTimer.start()
+		
 	
 	if !can_see_player:
-		face(dir)
+		face(facing_direction)
 	
 	can_see_player = false
 	ray_hits = []
@@ -79,3 +86,5 @@ func shoot_at(player_pos):
 func _on_ShootTimer_timeout():
 	can_shoot = true # replace with function body
 
+func _on_FaceTimer_timeout():
+	can_update_face_direction = true # replace with function body

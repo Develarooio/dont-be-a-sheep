@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Room.gd" type="Script" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Wolf/Wolf.tscn" type="PackedScene" id=3]
-[ext_resource path="res://FarmerFollow.gd" type="Script" id=4]
-[ext_resource path="res://Farmer/Farmer.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Tilesets/nice_walls.tres" type="TileSet" id=6]
+[ext_resource path="res://MovingFarmer/MovingFarmer.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Tilesets/nice_walls.tres" type="TileSet" id=5]
 
 [sub_resource type="Curve2D" id=1]
 
@@ -50,22 +49,9 @@ position = Vector2( 98.4756, 220 )
 curve = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="FarmerFollow" type="PathFollow2D" parent="FarmerPath" index="0"]
+[node name="MovingFarmer" parent="FarmerPath" index="0" instance=ExtResource( 4 )]
 
-position = Vector2( 32.8147, 183.73 )
-rotation = 1.5708
-offset = 600.0
-h_offset = 0.0
-v_offset = 0.0
-rotate = false
-cubic_interp = true
-loop = true
-lookahead = 4.0
-script = ExtResource( 4 )
-
-[node name="Farmer" parent="FarmerPath/FarmerFollow" index="0" instance=ExtResource( 5 )]
-
-rotation = 1.5708
+position = Vector2( 8.97247, -158.378 )
 
 [node name="TileMap" type="TileMap" parent="." index="4" groups=[
 "obstacles",
@@ -73,7 +59,7 @@ rotation = 1.5708
 
 position = Vector2( -168.201, 0 )
 mode = 0
-tile_set = ExtResource( 6 )
+tile_set = ExtResource( 5 )
 cell_size = Vector2( 50, 50 )
 cell_quadrant_size = 16
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
