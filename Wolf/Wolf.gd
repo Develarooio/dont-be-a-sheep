@@ -1,24 +1,43 @@
 extends KinematicBody2D
 
 var direction = Vector2(0,0)
-var speed = 400
+var rand_directionr = Vector2(0,0)
+var default_speed = 400
 onready  var ray0 = get_node("Ray0")
 onready  var ray1 = get_node("Ray1")
 onready  var ray2 = get_node("Ray2")
 onready  var ray3 = get_node("Ray3")
+onready var change_timer = get_node("ChangeDirection")
+onready var direction_pause_timer = get_node("DirectionPause")
+
 var rays = []
+var sheep_detected = false
+var patrol_speed = 50
 
 func _ready():
+	direction = calc_random_direction()
+	direction_pause_timer.start()
+	change_timer.start()
+	randomize()
 	rays = [ray0, ray1, ray2, ray3]
 
 func _process(delta):
-	move_and_slide(direction * speed)
-	direction = Vector2(0,0)
+	var speed = default_speed
+	if !sheep_detected:
+		if direction_pause_timer.time_left != 0:
+			direction = Vector2(0,0)
+		elif change_timer.time_left == 0:
+			change_timer.start()
+
+		speed = patrol_speed
+	move_and_slide(direction*speed)
 
 func _on_AgroArea_sheep_detected(player_body):
+	sheep_detected = false
 	var sheep_direction = Vector2(player_body.get_position() - position)
 	var rect_coord = get_corners_from_extents(player_body.get_shape().extents)
 	if !path_blocked(sheep_direction, rect_coord):
+		sheep_detected = true
 		direction = sheep_direction.normalized()
 
 func path_blocked(sheep_center, rect_coords):
@@ -45,3 +64,16 @@ func get_corners_from_extents(half_extents):
 func _on_KillZone_body_entered(body):
 	if body.is_in_group("sheep"):
 		body.kill()
+		
+func calc_random_direction():
+	var result = Vector2(randf(), randf())
+	if randi() % 2 > 0:
+		result.x *= -1
+	elif randi() % 2 > 0:
+		result.y *= -1
+	return result.normalized()
+
+func _on_ChangeDirection_timeout():
+	direction_pause_timer.start()
+	direction = calc_random_direction()
+	

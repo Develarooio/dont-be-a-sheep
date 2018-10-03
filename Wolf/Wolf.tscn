@@ -19,7 +19,7 @@ radius = 463.312
 custom_solver_bias = 0.0
 extents = Vector2( 64.1499, 32.1721 )
 
-[node name="Wolf" type="KinematicBody2D" index="0"]
+[node name="Wolf" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 1
@@ -97,8 +97,24 @@ _sections_unfolded = [ "Collision" ]
 
 shape = SubResource( 3 )
 
+[node name="ChangeDirection" type="Timer" parent="." index="8"]
+
+process_mode = 1
+wait_time = 3.0
+one_shot = false
+autostart = false
+
+[node name="DirectionPause" type="Timer" parent="." index="9"]
+
+process_mode = 1
+wait_time = 0.5
+one_shot = false
+autostart = false
+
 [connection signal="sheep_detected" from="AgroArea" to="." method="_on_AgroArea_sheep_detected"]
 
 [connection signal="body_entered" from="KillZone" to="." method="_on_KillZone_body_entered"]
+
+[connection signal="timeout" from="ChangeDirection" to="." method="_on_ChangeDirection_timeout"]
 
 
