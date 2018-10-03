@@ -9,27 +9,27 @@ onready  var ray2 = get_node("Ray2")
 onready  var ray3 = get_node("Ray3")
 onready var change_timer = get_node("ChangeDirection")
 onready var direction_pause_timer = get_node("DirectionPause")
+var wolf_paused = false
+var wolf_traveling = true
 
 var rays = []
 var sheep_detected = false
 var patrol_speed = 50
 
 func _ready():
-	direction = calc_random_direction()
-	direction_pause_timer.start()
-	change_timer.start()
 	randomize()
+	direction = calc_random_direction()
 	rays = [ray0, ray1, ray2, ray3]
 
 func _process(delta):
 	var speed = default_speed
 	if !sheep_detected:
-		if direction_pause_timer.time_left != 0:
+		speed = patrol_speed
+		if wolf_paused:
 			direction = Vector2(0,0)
-		elif change_timer.time_left == 0:
+		elif !wolf_paused and change_timer.is_stopped():
 			change_timer.start()
 
-		speed = patrol_speed
 	move_and_slide(direction*speed)
 
 func _on_AgroArea_sheep_detected(player_body):
@@ -74,6 +74,11 @@ func calc_random_direction():
 	return result.normalized()
 
 func _on_ChangeDirection_timeout():
+	wolf_paused = true
 	direction_pause_timer.start()
-	direction = calc_random_direction()
 	
+
+
+func _on_DirectionPause_timeout():
+	wolf_paused = false
+	direction = calc_random_direction()
