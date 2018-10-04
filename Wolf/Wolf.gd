@@ -77,8 +77,6 @@ func _on_ChangeDirection_timeout():
 	wolf_paused = true
 	direction_pause_timer.start()
 	
-
-
 func _on_DirectionPause_timeout():
 	wolf_paused = false
 	direction = calc_random_direction()
