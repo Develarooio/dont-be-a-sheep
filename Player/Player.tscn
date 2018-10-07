@@ -34,8 +34,8 @@ tracks/0/keys = {
 }
 
 [node name="Player" type="KinematicBody2D" groups=[
-"players",
 "humans",
+"players",
 ]]
 
 position = Vector2( -1, 0 )

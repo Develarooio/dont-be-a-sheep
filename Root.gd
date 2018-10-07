@@ -12,15 +12,15 @@ func _ready():
 
 func _process(delta):
 	if paused:
-		if Input.is_action_pressed("ui_accept"):
+		if Input.is_action_pressed("accept"):
 			if game_over:
 				switch_level(1)
 			else:
 				switch_level(current_level)
 			hide_message()
 			paused = false
-		if game_over and Input.is_action_pressed("quit"):
-			get_tree().quit()
+	if Input.is_action_pressed("quit"):
+		get_tree().quit()
 
 func game_start():
 	show_message("press enter to start")
@@ -35,17 +35,22 @@ func _game_over_win():
 	paused = true
 	current_level = current_level + 1
 
+func _game_over_lose():
+	show_message("Game over! \n Press enter to retry level, press q to quit")
+	paused = true
+
 
 func switch_level(level):
 	current_level = level
 	show_level(level)
+	current_level_node.get_winspot().connect("win", self, "_game_over_win")
+	current_level_node.get_player().connect('player_died', self, "_game_over_lose")
 	
 func show_level(level):
 	if current_level_node:
 		current_level_node.queue_free()
 	current_level_node = load(get_level_resource_path(level)).instance()
 	add_child(current_level_node)
-	current_level_node.get_winspot().connect("win", self, "_game_over_win")
 
 func get_level_resource_path(level_int):
 	return level_directory % (level_int)
