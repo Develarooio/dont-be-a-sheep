@@ -5,13 +5,19 @@ var level_directory = ('res://Levels/Level%s.tscn')
 var current_level_node
 
 func _ready():
-	switch_level(1)
+	game_start()
 	pass
 
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
+func _process(delta):
+	if Input.is_action_pressed("ui_accept"):
+		#Game start
+		switch_level(1)
+		hide_message()
+		#Switch level
+		#Game Over
+
+func game_start():
+	show_message("press enter to start")
 
 func _game_over_win():
 	switch_level(current_level + 1)
@@ -26,3 +32,10 @@ func switch_level(level):
 
 func get_level_resource_path(level_int):
 	return level_directory % (level_int)
+
+func show_message(message):
+	$UI/MessageBox.set_message(message)
+	$UI/MessageBox.visible = true
+
+func hide_message():
+	$UI/MessageBox.visible = false
