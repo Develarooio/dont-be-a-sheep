@@ -17,6 +17,7 @@ _data = {
 
 position = Vector2( 1.52435, 0 )
 script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="Background" type="TextureRect" parent="." index="0"]
 
@@ -57,7 +58,7 @@ position = Vector2( 8.97247, -158.378 )
 "obstacles",
 ]]
 
-position = Vector2( -168.201, 0 )
+position = Vector2( 54.9617, 134.514 )
 mode = 0
 tile_set = ExtResource( 5 )
 cell_size = Vector2( 50, 50 )
@@ -75,6 +76,6 @@ collision_mask = 1
 occluder_light_mask = 1
 format = 1
 tile_data = PoolIntArray( 393240, 0, 0, 458776, 0, 0, 524312, 0, 0, 589848, 0, 0, 655382, 0, 0, 720916, 0, 0, 851987, 0, 0, 983059, 0, 0, 1048595, 0, 0, 1114131, 0, 0, 1179667, 0, 0, 1245199, 0, 0, 1245200, 0, 0, 1245201, 0, 0, 1245202, 0, 0, 1245203, 0, 0 )
-_sections_unfolded = [ "Cell" ]
+_sections_unfolded = [ "Cell", "Transform" ]
 
 

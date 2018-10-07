@@ -11,7 +11,7 @@ config_version=3
 [application]
 
 config/name="Don't Be A Sheep"
-run/main_scene="res://Room.tscn"
+run/main_scene="res://Root.tscn"
 config/icon="res://icon.png"
 
 [display]
