@@ -11,6 +11,8 @@ extents = Vector2( 25.0133, 25.0248 )
 "obstacles",
 ]]
 
+_sections_unfolded = [ "Transform", "Z Index" ]
+
 [node name="Wall" type="Sprite" parent="." index="0" groups=[
 "obstacles",
 ]]
