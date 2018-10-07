@@ -1,11 +1,11 @@
 extends Node2D
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
+var current_level = 1
+var level_directory = ('res://Levels/Level%s.tscn')
+var current_level_node
 
 func _ready():
-	$Level1.get_winspot().connect("win", self, "_game_over_win")
+	switch_level(1)
 	pass
 
 #func _process(delta):
@@ -14,4 +14,15 @@ func _ready():
 #	pass
 
 func _game_over_win():
-	print("you fuckin won")
+	switch_level(current_level + 1)
+
+func switch_level(level):
+	current_level = level
+	if current_level_node:
+		current_level_node.queue_free()
+	current_level_node = load(get_level_resource_path(level)).instance()
+	add_child(current_level_node)
+	current_level_node.get_winspot().connect("win", self, "_game_over_win")
+
+func get_level_resource_path(level_int):
+	return level_directory % (level_int)

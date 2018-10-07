@@ -38,7 +38,6 @@ stretch_mode = 0
 [node name="Player" parent="." index="1" instance=ExtResource( 2 )]
 
 position = Vector2( 332, 296 )
-scale = Vector2( 1, 1 )
 
 [node name="Wolf" parent="." index="2" instance=ExtResource( 3 )]
 

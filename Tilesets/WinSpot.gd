@@ -16,7 +16,6 @@ func _ready():
 #	# Update game logic here.
 #	pass
 
-
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("players"):
 		emit_signal('win')
