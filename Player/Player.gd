@@ -10,6 +10,8 @@ onready var dash_label = get_node("DashLabel")
 onready var dash_cooldown = get_node("DashCooldown")
 onready var dash_length = get_node("DashLength")
 
+signal player_died
+
 func _ready():
 	sheep = false
 	pass
@@ -76,7 +78,7 @@ func get_position():
 		return $Human.global_position
 
 func kill():
-	#Emit game over signal?  Connect to root node?
+	emit_signal('player_died')
 	queue_free()
 
 func _on_DashCooldown_timeout():

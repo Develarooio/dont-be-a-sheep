@@ -15,3 +15,6 @@ func _ready():
 #	pass
 func get_winspot():
 	return $WinSpot
+
+func get_player():
+	return $Player
