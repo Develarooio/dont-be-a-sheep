@@ -16,12 +16,25 @@ var rays = []
 var sheep_detected = false
 var patrol_speed = 50
 
+var previous_position
+
 func _ready():
+	previous_position = position
 	randomize()
 	direction = calc_random_direction()
 	rays = [ray0, ray1, ray2, ray3]
 
 func _process(delta):
+	var current_direction = position - previous_position
+	print(current_direction)
+	if current_direction.x > 0:
+		$AnimatedSprite.flip_h = false
+		$AnimatedSprite.playing = true
+	elif current_direction.x < 0:
+		$AnimatedSprite.flip_h = true
+		$AnimatedSprite.playing = true
+	elif current_direction.x == 0 and current_direction.y == 0:
+		$AnimatedSprite.stop()
 	var speed = default_speed
 	if !sheep_detected:
 		speed = patrol_speed
@@ -29,6 +42,8 @@ func _process(delta):
 			direction = Vector2(0,0)
 		elif !wolf_paused and change_timer.is_stopped():
 			change_timer.start()
+	
+	previous_position = position
 
 	move_and_slide(direction*speed)
 
