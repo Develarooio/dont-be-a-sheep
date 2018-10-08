@@ -1,25 +1,36 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Wolf/Wolf.gd" type="Script" id=1]
-[ext_resource path="res://Wolf/brow_rect.png" type="Texture" id=2]
-[ext_resource path="res://Wolf/AgroArea.gd" type="Script" id=3]
+[ext_resource path="res://Wolf/wolf1.png" type="Texture" id=2]
+[ext_resource path="res://Wolf/wolf2.png" type="Texture" id=3]
+[ext_resource path="res://Wolf/AgroArea.gd" type="Script" id=4]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 6.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
 
 custom_solver_bias = 0.0
-extents = Vector2( 64.0904, 31.8837 )
+radius = 16.0898
+height = 34.7837
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=3]
 
 custom_solver_bias = 0.0
 radius = 463.312
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=4]
 
 custom_solver_bias = 0.0
-extents = Vector2( 64.1499, 32.1721 )
+extents = Vector2( 16.3975, 32.6352 )
 
-[node name="Wolf" type="KinematicBody2D"]
+[node name="Wolf" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -28,16 +39,23 @@ collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 
-shape = SubResource( 1 )
+frames = SubResource( 1 )
+animation = "default"
+frame = 1
+playing = true
 
-[node name="Sprite" type="Sprite" parent="." index="1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
-texture = ExtResource( 2 )
+visible = false
+rotation = 1.5708
+shape = SubResource( 2 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="AgroArea" type="Area2D" parent="." index="2"]
 
+visible = false
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -45,11 +63,11 @@ linear_damp = 0.1
 angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
-script = ExtResource( 3 )
+script = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AgroArea" index="0"]
 
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="Ray0" type="RayCast2D" parent="." index="3"]
@@ -96,7 +114,9 @@ _sections_unfolded = [ "Collision" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone" index="0"]
 
-shape = SubResource( 3 )
+rotation = 1.5708
+shape = SubResource( 4 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="ChangeDirection" type="Timer" parent="." index="8"]
 
