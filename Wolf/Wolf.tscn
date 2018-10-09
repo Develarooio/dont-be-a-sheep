@@ -1,24 +1,15 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Wolf/Wolf.gd" type="Script" id=1]
-[ext_resource path="res://Wolf/wolf1.png" type="Texture" id=2]
-[ext_resource path="res://Wolf/wolf2.png" type="Texture" id=3]
-[ext_resource path="res://Wolf/AgroArea.gd" type="Script" id=4]
-
-[sub_resource type="SpriteFrames" id=1]
-
-animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
-"loop": true,
-"name": "default",
-"speed": 6.0
-} ]
+[ext_resource path="res://Wolf/AgroArea.gd" type="Script" id=2]
+[ext_resource path="res://Wolf/wolf1.png" type="Texture" id=3]
+[ext_resource path="res://Wolf/wolf2.png" type="Texture" id=4]
 
 [sub_resource type="CapsuleShape2D" id=2]
 
 custom_solver_bias = 0.0
 radius = 16.0898
-height = 34.7837
+height = 32.4747
 
 [sub_resource type="CircleShape2D" id=3]
 
@@ -30,7 +21,16 @@ radius = 463.312
 custom_solver_bias = 0.0
 extents = Vector2( 16.3975, 32.6352 )
 
-[node name="Wolf" type="KinematicBody2D" index="0"]
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 6.0
+} ]
+
+[node name="Wolf" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 1
@@ -39,23 +39,14 @@ collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 
-frames = SubResource( 1 )
-animation = "default"
-frame = 1
-playing = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
-
-visible = false
 rotation = 1.5708
 shape = SubResource( 2 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="AgroArea" type="Area2D" parent="." index="2"]
+[node name="AgroArea" type="Area2D" parent="." index="1"]
 
-visible = false
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -63,14 +54,14 @@ linear_damp = 0.1
 angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
-script = ExtResource( 4 )
+script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AgroArea" index="0"]
 
 shape = SubResource( 3 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
-[node name="Ray0" type="RayCast2D" parent="." index="3"]
+[node name="Ray0" type="RayCast2D" parent="." index="2"]
 
 enabled = true
 exclude_parent = true
@@ -78,21 +69,21 @@ cast_to = Vector2( 0, 50 )
 collision_mask = 1
 _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 
-[node name="Ray1" type="RayCast2D" parent="." index="4"]
+[node name="Ray1" type="RayCast2D" parent="." index="3"]
 
 enabled = true
 exclude_parent = true
 cast_to = Vector2( 0, 50 )
 collision_mask = 1
 
-[node name="Ray2" type="RayCast2D" parent="." index="5"]
+[node name="Ray2" type="RayCast2D" parent="." index="4"]
 
 enabled = true
 exclude_parent = true
 cast_to = Vector2( 0, 50 )
 collision_mask = 1
 
-[node name="Ray3" type="RayCast2D" parent="." index="6"]
+[node name="Ray3" type="RayCast2D" parent="." index="5"]
 
 position = Vector2( 0, -1 )
 enabled = true
@@ -100,7 +91,7 @@ exclude_parent = true
 cast_to = Vector2( 0, 50 )
 collision_mask = 1
 
-[node name="KillZone" type="Area2D" parent="." index="7"]
+[node name="KillZone" type="Area2D" parent="." index="6"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -118,19 +109,26 @@ rotation = 1.5708
 shape = SubResource( 4 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="ChangeDirection" type="Timer" parent="." index="8"]
+[node name="ChangeDirection" type="Timer" parent="." index="7"]
 
 process_mode = 1
 wait_time = 5.0
 one_shot = false
 autostart = false
 
-[node name="DirectionPause" type="Timer" parent="." index="9"]
+[node name="DirectionPause" type="Timer" parent="." index="8"]
 
 process_mode = 1
 wait_time = 2.0
 one_shot = false
 autostart = false
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="9"]
+
+frames = SubResource( 1 )
+animation = "default"
+frame = 1
+playing = true
 
 [connection signal="sheep_detected" from="AgroArea" to="." method="_on_AgroArea_sheep_detected"]
 

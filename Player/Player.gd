@@ -9,6 +9,7 @@ var can_dash = true
 onready var dash_label = get_node("DashLabel")
 onready var dash_cooldown = get_node("DashCooldown")
 onready var dash_length = get_node("DashLength")
+var animated_sprite
 
 signal player_died
 
@@ -46,26 +47,30 @@ func move():
 		direction.y = -1
 	if Input.is_action_pressed("move_right"):
 		direction.x = 1
+		if animated_sprite != null:
+			animated_sprite.flip_h = false
 	if Input.is_action_pressed("move_left"):
 		direction.x = -1
+		if animated_sprite != null:
+			animated_sprite.flip_h = true
 	
+	if direction.length() != 0:
+		if animated_sprite != null:
+			animated_sprite.playing = true
+	else:
+		if animated_sprite != null:
+			animated_sprite.stop()
 	if !is_transforming:
 		move_and_slide(direction.normalized() * speed)
-
-func set_form():
-	if Input.is_action_just_pressed("toggle_form") and !is_transforming:
-		$Human.disabled = !$Human.disabled
-		$Human.visible = !$Human.visible
-		$Sheep.disabled = !$Sheep.disabled
-		$Sheep.visible = !$Sheep.visible
-		sheep = !sheep
 		
-		if sheep:
-			remove_from_group("humans")
-			add_to_group("sheep")
-		else:
-			remove_from_group("sheep")
-			add_to_group("humans")
+func set_form():
+	if $AnimationPlayer.is_playing():
+		$Human/Sprite.visible = false
+		$Sheep/AnimatedSprite.visible = false
+	else:
+		$Human/Sprite.visible = true
+		$Sheep/AnimatedSprite.visible = true
+	if Input.is_action_just_pressed("toggle_form") and !is_transforming:
 		
 		is_transforming = true
 		$TransformTimer.start()
@@ -89,3 +94,19 @@ func _on_DashLength_timeout():
 
 func _on_TransformTimer_timeout():
 	is_transforming = false
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	$Human.disabled = !$Human.disabled
+	$Human.visible = !$Human.visible
+	$Sheep.disabled = !$Sheep.disabled
+	$Sheep.visible = !$Sheep.visible
+	sheep = !sheep
+	
+	if sheep:
+		animated_sprite = $Sheep/AnimatedSprite
+		remove_from_group("humans")
+		add_to_group("sheep")
+	else:
+		remove_from_group("sheep")
+		add_to_group("humans")
