@@ -3,7 +3,7 @@ extends PathFollow2D
 # class member variables go here, for example:
 # var a = 2
 # var b = "textvar"
-var SPEED = 10
+var SPEED = 4
 var IS_PLAYER_SEEN = false
 
 func _ready():

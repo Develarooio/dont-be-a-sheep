@@ -5,7 +5,7 @@ var can_update_face_direction = true
 var bullet_scene = preload("res://Bullet/Bullet.tscn")
 var can_see_player = false
 var last_frame_pos
-var facing_direction
+var facing_direction = Vector2(0,0)
 
 var sight_color = Color(1.0,0,0)
 
@@ -19,7 +19,7 @@ func _ready():
 
 func _physics_process(delta):
 	update()
-	
+	update_sprite(facing_direction)
 	if can_update_face_direction:
 		facing_direction =  last_frame_pos - global_position
 		last_frame_pos = global_position
@@ -39,6 +39,17 @@ func _physics_process(delta):
 			can_see_player = true
 			if (can_shoot):
 				shoot_at(body.get_global_position())
+
+func update_sprite(direction):
+	if direction.length() == 0:
+		$Sprite/AnimationPlayer.stop()
+	else:
+		if !$Sprite/AnimationPlayer.is_playing():
+			$Sprite/AnimationPlayer.play("farmer_walk_right")
+	if direction.x < 0:
+		$Sprite.scale.x = 1
+	elif direction.x > 0:
+		$Sprite.scale.x = -1
 
 func draw_sight(cast_result):
 	draw_line(Vector2(), (cast_result.position - global_position), sight_color)

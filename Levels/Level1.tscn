@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Levels/AbstractLevel.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Tilesets/nice_walls.tres" type="TileSet" id=2]
+[ext_resource path="res://Tilesets/autumn.tres" type="TileSet" id=2]
 [ext_resource path="res://Tilesets/WinSpot.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Wolf/Wolf.tscn" type="PackedScene" id=5]
@@ -14,7 +14,7 @@ _sections_unfolded = [ "Transform" ]
 
 mode = 0
 tile_set = ExtResource( 2 )
-cell_size = Vector2( 50, 50 )
+cell_size = Vector2( 32, 32 )
 cell_quadrant_size = 16
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 cell_half_offset = 2
@@ -28,7 +28,7 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( 262177, 0, 0, 327713, 0, 0, 393236, 0, 0, 393249, 0, 0, 458772, 0, 0, 458785, 0, 0, 524308, 0, 0, 524321, 0, 0, 589844, 0, 0, 589857, 0, 0, 655380, 0, 0, 655393, 0, 0, 720928, 0, 0, 786464, 0, 0, 852000, 0, 0, 917509, 0, 0, 917510, 0, 0, 917511, 0, 0, 917512, 0, 0, 917513, 0, 0, 917514, 0, 0, 917515, 0, 0, 917516, 0, 0, 917517, 0, 0, 917536, 0, 0, 983053, 0, 0, 983054, 0, 0, 983072, 0, 0, 1048608, 0, 0, 1114144, 0, 0, 1179680, 0, 0, 1245216, 0, 0 )
+tile_data = PoolIntArray( 262177, 0, 0, 327713, 0, 0, 393220, 9, 0, 393236, 0, 0, 393249, 0, 0, 458772, 0, 0, 458785, 0, 0, 524308, 0, 0, 524321, 0, 0, 589844, 0, 0, 589857, 0, 0, 655380, 0, 0, 655393, 0, 0, 720921, 16, 0, 720928, 0, 0, 786457, 15, 0, 786464, 0, 0, 851993, 15, 0, 852000, 0, 0, 917509, 0, 0, 917510, 0, 0, 917511, 0, 0, 917512, 0, 0, 917513, 0, 0, 917514, 0, 0, 917515, 0, 0, 917516, 0, 0, 917517, 0, 0, 917529, 15, 0, 917536, 0, 0, 983053, 0, 0, 983054, 0, 0, 983065, 15, 0, 983072, 0, 0, 1048601, 15, 0, 1048608, 0, 0, 1114137, 15, 0, 1114144, 0, 0, 1179680, 0, 0, 1245216, 0, 0 )
 _sections_unfolded = [ "Cell", "Transform" ]
 
 [node name="WinSpot" parent="." index="1" instance=ExtResource( 3 )]
