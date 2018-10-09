@@ -26,7 +26,6 @@ func _ready():
 
 func _process(delta):
 	var current_direction = position - previous_position
-	print(current_direction)
 	if current_direction.x > 0:
 		$AnimatedSprite.flip_h = false
 		$AnimatedSprite.playing = true
