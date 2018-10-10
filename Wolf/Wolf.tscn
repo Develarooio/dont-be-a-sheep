@@ -5,23 +5,23 @@
 [ext_resource path="res://Wolf/wolf1.png" type="Texture" id=3]
 [ext_resource path="res://Wolf/wolf2.png" type="Texture" id=4]
 
-[sub_resource type="CapsuleShape2D" id=2]
+[sub_resource type="CapsuleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 16.0898
 height = 32.4747
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=2]
 
 custom_solver_bias = 0.0
 radius = 463.312
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
 extents = Vector2( 16.3975, 32.6352 )
 
-[sub_resource type="SpriteFrames" id=1]
+[sub_resource type="SpriteFrames" id=4]
 
 animations = [ {
 "frames": [ ExtResource( 3 ), ExtResource( 4 ) ],
@@ -42,7 +42,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 
 rotation = 1.5708
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="AgroArea" type="Area2D" parent="." index="1"]
@@ -58,7 +58,7 @@ script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AgroArea" index="0"]
 
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="Ray0" type="RayCast2D" parent="." index="2"]
@@ -106,7 +106,7 @@ _sections_unfolded = [ "Collision" ]
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone" index="0"]
 
 rotation = 1.5708
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="ChangeDirection" type="Timer" parent="." index="7"]
@@ -125,9 +125,8 @@ autostart = false
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="9"]
 
-frames = SubResource( 1 )
+frames = SubResource( 4 )
 animation = "default"
-frame = 1
 playing = true
 
 [connection signal="sheep_detected" from="AgroArea" to="." method="_on_AgroArea_sheep_detected"]
