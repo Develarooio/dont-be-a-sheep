@@ -8,7 +8,6 @@ var last_frame_pos
 var facing_direction = Vector2(0,0)
 var sprite_back = load("res://Farmer/farmer_right_back_sheet.png")
 var sprite_front = load("res://Farmer/farmer_right_sheet.png")
-var current_sprite
 
 
 var sight_color = Color(1.0,0,0)
@@ -50,7 +49,8 @@ func update_sprite(direction):
 	else:
 		if !$Sprite/AnimationPlayer.is_playing():
 			$Sprite/AnimationPlayer.play("farmer_walk_right")
-	if direction.y <= 0:
+			
+	if round(direction.y) <= 0:
 		$Sprite.texture = sprite_front
 	else:
 		$Sprite.texture = sprite_back

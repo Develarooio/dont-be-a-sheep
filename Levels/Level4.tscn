@@ -9,7 +9,7 @@
 
 bake_interval = 5.0
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 867, 272, 0, 0, 0, 0, 1314, 269, 0, 0, 0, 0, 1331, 578, 0, 0, 0, 0, 868, 580, 0, 0, 0, 0, 867, 274 )
+"points": PoolVector2Array( 0, 0, 0, 0, 867, 272, 0, 0, 0, 0, 1247.36, 216.567, 0, 0, 0, 0, 1331, 578, 0, 0, 0, 0, 868, 580, 0, 0, 0, 0, 867, 274 )
 }
 
 [node name="AbstractLevel" index="0" instance=ExtResource( 1 )]
