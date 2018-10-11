@@ -127,6 +127,7 @@ autostart = false
 
 frames = SubResource( 4 )
 animation = "default"
+frame = 1
 playing = true
 
 [connection signal="sheep_detected" from="AgroArea" to="." method="_on_AgroArea_sheep_detected"]
