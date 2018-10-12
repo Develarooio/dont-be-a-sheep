@@ -1,31 +1,42 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
-[ext_resource path="res://Player/MR_Dong_Hands.png" type="Texture" id=2]
-[ext_resource path="res://Player/sheep.png" type="Texture" id=3]
-[ext_resource path="res://Player/sheep2.png" type="Texture" id=4]
-[ext_resource path="res://Player/dust1.png" type="Texture" id=5]
+[ext_resource path="res://Player/MR_Dong_Hands_sheet1.png" type="Texture" id=2]
+[ext_resource path="res://Player/MR_Dong_Hands_sheet2.png" type="Texture" id=3]
+[ext_resource path="res://Player/MR_Dong_Hands_sheet3.png" type="Texture" id=4]
+[ext_resource path="res://Player/sheep.png" type="Texture" id=5]
+[ext_resource path="res://Player/sheep2.png" type="Texture" id=6]
+[ext_resource path="res://Player/dust1.png" type="Texture" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 15, 29 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="SpriteFrames" id=2]
+
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 9.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
 extents = Vector2( 32.0966, 14.2552 )
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=4]
 
 animations = [ {
-"frames": [ ExtResource( 3 ), ExtResource( 4 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
 } ]
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 
 length = 1.0
 loop = false
@@ -55,7 +66,7 @@ tracks/1/keys = {
 "values": [ true, false ]
 }
 
-[node name="Player" type="KinematicBody2D" groups=[
+[node name="Player" type="KinematicBody2D" index="0" groups=[
 "players",
 "humans",
 ]]
@@ -73,22 +84,23 @@ sheep = null
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Sprite" type="Sprite" parent="Human" index="0"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Human" index="0"]
 
-position = Vector2( 0, -3 )
-texture = ExtResource( 2 )
+frames = SubResource( 2 )
+animation = "default"
+playing = true
 
 [node name="Sheep" type="CollisionShape2D" parent="." index="1"]
 
 visible = false
 position = Vector2( 30.9034, 32.2552 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 disabled = true
 _sections_unfolded = [ "Transform" ]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Sheep" index="0"]
 
-frames = SubResource( 3 )
+frames = SubResource( 4 )
 animation = "default"
 playing = true
 _sections_unfolded = [ "Visibility" ]
@@ -107,7 +119,7 @@ autoplay = ""
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/player-transformation = SubResource( 4 )
+anims/player-transformation = SubResource( 5 )
 blend_times = [  ]
 
 [node name="DashLength" type="Timer" parent="." index="4"]
@@ -149,7 +161,7 @@ autostart = false
 
 visible = false
 position = Vector2( 18, 15 )
-texture = ExtResource( 5 )
+texture = ExtResource( 7 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [connection signal="timeout" from="TransformTimer" to="." method="_on_TransformTimer_timeout"]
