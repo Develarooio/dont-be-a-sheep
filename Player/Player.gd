@@ -14,6 +14,7 @@ var animated_sprite
 signal player_died
 
 func _ready():
+	animated_sprite = $Human/AnimatedSprite
 	sheep = false
 	pass
 
@@ -47,28 +48,24 @@ func move():
 		direction.y = -1
 	if Input.is_action_pressed("move_right"):
 		direction.x = 1
-		if animated_sprite != null:
-			animated_sprite.flip_h = false
+		animated_sprite.flip_h = false
 	if Input.is_action_pressed("move_left"):
 		direction.x = -1
-		if animated_sprite != null:
-			animated_sprite.flip_h = true
+		animated_sprite.flip_h = true
 	
 	if direction.length() != 0:
-		if animated_sprite != null:
-			animated_sprite.playing = true
+		animated_sprite.playing = true
 	else:
-		if animated_sprite != null:
-			animated_sprite.stop()
+		animated_sprite.stop()
 	if !is_transforming:
 		move_and_slide(direction.normalized() * speed)
 		
 func set_form():
 	if $AnimationPlayer.is_playing():
-		$Human/Sprite.visible = false
+		$Human/AnimatedSprite.visible = false
 		$Sheep/AnimatedSprite.visible = false
 	else:
-		$Human/Sprite.visible = true
+		$Human/AnimatedSprite.visible = true
 		$Sheep/AnimatedSprite.visible = true
 	if Input.is_action_just_pressed("toggle_form") and !is_transforming:
 		
@@ -108,5 +105,6 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		remove_from_group("humans")
 		add_to_group("sheep")
 	else:
+		animated_sprite = $Human/AnimatedSprite
 		remove_from_group("sheep")
 		add_to_group("humans")
