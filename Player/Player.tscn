@@ -69,6 +69,7 @@ tracks/1/keys = {
 [node name="Player" type="KinematicBody2D" index="0" groups=[
 "players",
 "humans",
+"players",
 ]]
 
 input_pickable = false
@@ -102,6 +103,7 @@ _sections_unfolded = [ "Transform" ]
 
 frames = SubResource( 4 )
 animation = "default"
+frame = 1
 playing = true
 _sections_unfolded = [ "Visibility" ]
 
