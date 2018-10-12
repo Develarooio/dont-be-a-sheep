@@ -20,7 +20,7 @@ position = Vector2( 445.204, 183.391 )
 
 [node name="Farmhouse" parent="." index="1" instance=ExtResource( 3 )]
 
-position = Vector2( 262.813, 272.44 )
+position = Vector2( 615.508, 299.097 )
 
 [node name="Path2D" type="Path2D" parent="." index="2"]
 
