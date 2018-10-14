@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Farmer/Farmer.gd" type="Script" id=1]
 [ext_resource path="res://Farmer/farmer_right_sheet.png" type="Texture" id=2]
 [ext_resource path="res://Farmer/ConeOfSight.gd" type="Script" id=3]
 [ext_resource path="res://Farmer/flashlight-zone..png" type="Texture" id=4]
 [ext_resource path="res://Farmer/Timer.gd" type="Script" id=5]
+[ext_resource path="res://Farmer/gun.png" type="Texture" id=6]
 
 [sub_resource type="Animation" id=1]
 
@@ -126,6 +127,12 @@ process_mode = 1
 wait_time = 0.0225701
 one_shot = false
 autostart = false
+
+[node name="Gun" type="Sprite" parent="." index="5"]
+
+position = Vector2( 0, 16 )
+texture = ExtResource( 6 )
+_sections_unfolded = [ "Transform" ]
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]
 
