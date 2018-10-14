@@ -8,6 +8,7 @@ var max_level = 2
 var game_over = false
 
 func _ready():
+	show_level(0)
 	game_start()
 
 func _process(delta):
