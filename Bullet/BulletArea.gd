@@ -4,8 +4,7 @@ var direction
 var speed = 10
 
 func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
+	$AnimationPlayer.play("bullet")
 	pass
 	
 func set_direction(dir):
@@ -21,5 +20,6 @@ func _physics_process(delta):
 			queue_free()
 			
 			
+
 	position = position + (direction * speed)
 	
