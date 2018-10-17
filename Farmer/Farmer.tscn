@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Farmer/Farmer.gd" type="Script" id=1]
 [ext_resource path="res://Farmer/farmer_right_sheet.png" type="Texture" id=2]
 [ext_resource path="res://Farmer/ConeOfSight.gd" type="Script" id=3]
 [ext_resource path="res://Farmer/flashlight-zone..png" type="Texture" id=4]
 [ext_resource path="res://Farmer/Timer.gd" type="Script" id=5]
+[ext_resource path="res://Farmer/gun.png" type="Texture" id=6]
 
 [sub_resource type="Animation" id=1]
 
@@ -94,21 +95,21 @@ angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 3 )
-_sections_unfolded = [ "Collision", "Transform" ]
+_sections_unfolded = [ "Collision", "Transform", "Z Index" ]
 
 [node name="ConeCollision" type="CollisionShape2D" parent="ConeOfSight" index="0"]
 
-position = Vector2( -1.5, 245.921 )
-scale = Vector2( 26.3716, 26.7599 )
+position = Vector2( -1, 393 )
+scale = Vector2( 36.9417, 40.2709 )
 shape = SubResource( 3 )
 script = SubResource( 4 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Transform", "Z Index" ]
 
 [node name="flashlight" type="Sprite" parent="ConeOfSight" index="1"]
 
+visible = false
 position = Vector2( -1.00001, 189 )
 scale = Vector2( 1.26667, 1.05556 )
-z_index = -1
 texture = ExtResource( 4 )
 _sections_unfolded = [ "Z Index" ]
 
@@ -126,6 +127,12 @@ process_mode = 1
 wait_time = 0.0225701
 one_shot = false
 autostart = false
+
+[node name="Gun" type="Sprite" parent="." index="5"]
+
+position = Vector2( 0, 16 )
+texture = ExtResource( 6 )
+_sections_unfolded = [ "Transform" ]
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]
 

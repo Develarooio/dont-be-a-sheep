@@ -51,13 +51,17 @@ func update_sprite(direction):
 			$Sprite/AnimationPlayer.play("farmer_walk_right")
 			
 	if round(direction.y) <= 0:
+		$Gun.z_index = 1
 		$Sprite.texture = sprite_front
 	else:
+		$Gun.z_index = -1
 		$Sprite.texture = sprite_back
 
 	if direction.x < 0:
+		$Gun.scale.x = 1
 		$Sprite.scale.x = 1
 	elif direction.x > 0:
+		$Gun.scale.x = -1
 		$Sprite.scale.x = -1
 
 func draw_sight(cast_result):
